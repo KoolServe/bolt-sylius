@@ -1,0 +1,29 @@
+{
+    "name": "koolserve/sylius",
+    "description": "Integrate Sylius with Bolt",
+    "type": "bolt-extension",
+    "keywords": [
+    ],
+    "require": {
+        "bolt/bolt": "^3.2"
+    },
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Chris Hilsdon",
+            "email": "chris@koolserve.uk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Bolt\\Extension\\Koolserve\\Sylius\\": "src",
+            "Sainsburys\\Guzzle\\Oauth2\\": "lib/sainsburys/guzzle-oauth2-plugin/src/"
+        }
+    },
+    "extra": {
+        "bolt-assets": "web",
+        "bolt-class": "Bolt\\Extension\\Koolserve\\Sylius\\SyliusExtension"
+    }
+}
