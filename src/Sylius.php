@@ -17,12 +17,26 @@ class Sylius
         $this->client = $client;
     }
 
-    public function getData(){
+    protected function getLatestCustomers()
+    {
         $client = $this->getClient();
+        $customers = $client->get('customers/?limit=5');
 
+        return $customers;
+    }
+
+    protected function getLatestOrders()
+    {
+        $client = $this->getClient();
+        $orders = $client->get('orders/?limit=5');
+
+        return $orders;
+    }
+
+    public function getData(){
         return [
-            'orders' => $client->get('orders/'),
-            'customers' => $client->get('customers/')
+            'orders' => $this->getLatestOrders(),
+            'customers' => $this->getLatestCustomers()
         ];
     }
 }

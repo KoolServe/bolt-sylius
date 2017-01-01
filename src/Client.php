@@ -51,7 +51,7 @@ class Client
         $response = $client->get($url);
         $data = json_decode($response->getBody() . '', true);
 
-        return $data;
+        return $data['_embedded']['items'];
     }
 
     public function connect()
