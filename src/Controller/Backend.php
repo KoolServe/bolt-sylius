@@ -42,7 +42,7 @@ class Backend implements ControllerProviderInterface
     {
         $sylius = new Sylius($this->config);
         $data = [
-            'sylius' => $sylius->getData()
+            'sylius' => $sylius->getDashboardData()
         ];
         $html = $app['twig']->render('@SyliusBackend/index.twig', (array) $data);
 

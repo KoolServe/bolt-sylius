@@ -19,21 +19,18 @@ class Sylius
 
     protected function getLatestCustomers()
     {
-        $client = $this->getClient();
-        $customers = $client->get('customers/?limit=5');
-
-        return $customers;
+        $customers = new Fetch\Customers($this->getClient());
+        return $customers->fetchNewCustomers();
     }
 
     protected function getLatestOrders()
     {
-        $client = $this->getClient();
-        $orders = $client->get('orders/?limit=5');
-
-        return $orders;
+        $orders = new Fetch\Orders($this->getClient());
+        return $orders->fetchLast5Orders();
     }
 
-    public function getData(){
+    public function getDashboardData()
+    {
         return [
             'orders' => $this->getLatestOrders(),
             'customers' => $this->getLatestCustomers()

@@ -12,7 +12,7 @@ class SyliusExtension extends SimpleExtension
     {
         $config = $this->getConfig();
         return [
-            '/' => new Controller\Backend($config),
+            '/' => new Controller\Backend($config)
         ];
     }
 
