@@ -1,0 +1,5 @@
+{% macro getUrl(path) %}
+{% spaceless %}
+{{paths.bolt}}extend/sylius/{{path}}
+{% endspaceless %}
+{% endmacro %}

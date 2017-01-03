@@ -1,0 +1,15 @@
+{% extends "_base/_page-nav.twig" %}
+
+{% block page_nav 'Extensions' %}
+
+    {% block page_title %}
+        {{ __('Sylius') }}
+    {% endblock page_title %}
+
+    {% block page_subtitle %}
+        {{ __('Customers') }}
+    {% endblock page_subtitle %}
+
+    {% block page_main %}
+        {% include '@SyliusBackend/_nav.twig' %}
+    {% endblock page_main %}

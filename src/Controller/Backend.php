@@ -28,23 +28,71 @@ class Backend implements ControllerProviderInterface
         $ctr->value(Zone::KEY, Zone::BACKEND);
 
         $baseUrl = '/extend/sylius';
-        $ctr->match($baseUrl, [$this, 'index'])
-            ->bind('sylius')
-            ->method(Request::METHOD_GET)
-        ;
-       return $ctr;
+        $ctr->match($baseUrl, [$this, 'dashboard'])
+            ->bind('sylius_dashboard')
+            ->method(Request::METHOD_GET);
+
+        $ctr->match($baseUrl . '/customers', [$this, 'customers'])
+            ->bind('sylius_customers')
+            ->method(Request::METHOD_GET);
+
+        $ctr->match($baseUrl . '/orders', [$this, 'orders'])
+            ->bind('sylius_orders')
+            ->method(Request::METHOD_GET);
+
+        $ctr->match($baseUrl . '/products', [$this, 'products'])
+            ->bind('sylius_products')
+            ->method(Request::METHOD_GET);
+
+        return $ctr;
     }
 
     /**
      * @param Application $app
      */
-    public function index(Application $app)
+    public function dashboard(Application $app)
     {
         $sylius = new Sylius($this->config);
         $data = [
             'sylius' => $sylius->getDashboardData()
         ];
-        $html = $app['twig']->render('@SyliusBackend/index.twig', (array) $data);
+        $html = $app['twig']->render('@SyliusBackend/dashboard.twig', (array) $data);
+
+        return new Response(new \Twig_Markup($html, 'UTF-8'));
+    }
+
+    /**
+     * @param Application $app
+     */
+    public function customers(Application $app)
+    {
+        $sylius = new Sylius($this->config);
+        $data = [];
+        $html = $app['twig']->render('@SyliusBackend/customers.twig', (array) $data);
+
+        return new Response(new \Twig_Markup($html, 'UTF-8'));
+    }
+
+    /**
+     * @param Application $app
+     */
+    public function orders(Application $app)
+    {
+        $sylius = new Sylius($this->config);
+        $data = [];
+        $html = $app['twig']->render('@SyliusBackend/orders.twig', (array) $data);
+
+        return new Response(new \Twig_Markup($html, 'UTF-8'));
+    }
+
+    /**
+     * @param Application $app
+     */
+    public function products(Application $app)
+    {
+        $sylius = new Sylius($this->config);
+        $data = [];
+        $html = $app['twig']->render('@SyliusBackend/products.twig', (array) $data);
 
         return new Response(new \Twig_Markup($html, 'UTF-8'));
     }

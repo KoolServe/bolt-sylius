@@ -1,0 +1,36 @@
+{% import "@SyliusBackend/_macros.twig" as macros %}
+
+<div class="row">
+    <div class="col-md-3">
+        <a href="{{ macros.getUrl('') }}">
+            <p class="text-center">
+                <i class="fa fa-home fa-3x"></i><br/>
+                Dashboard
+            </p>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{{ macros.getUrl('products') }}">
+            <p class="text-center">
+                <i class="fa fa-cubes fa-3x"></i><br/>
+                Products
+            </p>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{{ macros.getUrl('orders') }}">
+            <p class="text-center">
+                <i class="fa fa-shopping-cart fa-3x"></i><br/>
+                Orders
+            </p>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <a href="{{ macros.getUrl('customers') }}">
+            <p class="text-center">
+                <i class="fa fa-users fa-3x"></i><br/>
+                Customers
+            </p>
+        </a>
+    </div>
+</div>
