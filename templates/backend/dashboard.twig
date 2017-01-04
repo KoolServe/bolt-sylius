@@ -84,7 +84,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for orders in sylius.orders %}
+                        {% for orders in sylius.orders if orders.checkout_state == 'completed' %}
                             <tr>
                                 <th scope="row">
                                     <h5>{{orders.number}}</h5>
