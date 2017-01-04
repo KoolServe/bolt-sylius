@@ -11,4 +11,10 @@ class Orders extends Base implements Fetch
         $client = $this->getClient();
         return $client->get($this->getName() . '/?limit=5');
     }
+
+    public function fetchOrders()
+    {
+        $client = $this->getClient();
+        return $client->get($this->getName() . '/?limit=100');
+    }
 }

@@ -12,4 +12,85 @@
 
     {% block page_main %}
         {% include '@SyliusBackend/_nav.twig' %}
+        <table class="table">
+            <thead>
+                <tr class="active">
+                    <th>
+                        <h4>
+                            <strong>Channel</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Number</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Date</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Payment state</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Shipping state</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Total</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Actions</strong>
+                        </h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in sylius.orders if order.checkout_state != 'cart' %}
+                <tr>
+                    <th scope="row">
+                        <h5>
+                            {{order.channel.code}}
+                        </h5>
+                    </th>
+                    <th>
+                        <h5>
+                            #{{order.number}}
+                        </h5>
+                    </th>
+                    <th>
+                        <h5>
+                            {{order.created_at}}
+                        </h5>
+                    </th>
+                    <th>
+                        <h5>
+                            {{order.payments.0.state}}
+                        </h5>
+                    </th>
+                    <th>
+                        <h5>
+                            {{order.shipments.0.state}}
+                        </h5>
+                    </th>
+                    <th>
+                        <h5>
+                            {{(order.total / 100)|number_format(2, '.', ',') }}
+                        </h5>
+                    </th>
+                    <td>
+                        <button type="button" class="btn btn-default">Show</button>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
     {% endblock page_main %}
