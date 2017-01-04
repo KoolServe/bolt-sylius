@@ -84,21 +84,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for orders in sylius.orders if orders.checkout_state == 'completed' %}
+                        {% for order in sylius.orders if order.checkout_state == 'completed' %}
                             <tr>
                                 <th scope="row">
-                                    <h5>{{orders.number}}</h5>
+                                    <h5>{{order.number}}</h5>
                                 </th>
                                 <th>
                                     <h5>
-                                        <strong>{{orders.shipping_address.first_name}} {{orders.shipping_address.first_name}} </strong>
+                                        <strong>{{order.shipping_address.first_name}} {{order.shipping_address.first_name}} </strong>
                                     </h5>
                                 </th>
                                 <th>
-                                    {{orders.items|length}}
+                                    {{order.items|length}}
                                 </th>
                                 <th>
-                                    {{orders.total / 100}}
+                                    {{order.total / 100}}
                                 </th>
                                 <td>
                                     <button type="button" class="btn btn-default">Show</button>

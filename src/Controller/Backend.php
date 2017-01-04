@@ -56,7 +56,7 @@ class Backend implements ControllerProviderInterface
         $data = [
             'sylius' => $sylius->getDashboardData()
         ];
-        $html = $app['twig']->render('@SyliusBackend/dashboard.twig', (array) $data);
+        $html = $app['twig']->render('@SyliusBackend/dashboard.twig', $data);
 
         return new Response(new \Twig_Markup($html, 'UTF-8'));
     }
@@ -68,7 +68,7 @@ class Backend implements ControllerProviderInterface
     {
         $sylius = new Sylius($this->config);
         $data = [];
-        $html = $app['twig']->render('@SyliusBackend/customers.twig', (array) $data);
+        $html = $app['twig']->render('@SyliusBackend/customers.twig', $data);
 
         return new Response(new \Twig_Markup($html, 'UTF-8'));
     }
@@ -80,7 +80,7 @@ class Backend implements ControllerProviderInterface
     {
         $sylius = new Sylius($this->config);
         $data = [];
-        $html = $app['twig']->render('@SyliusBackend/orders.twig', (array) $data);
+        $html = $app['twig']->render('@SyliusBackend/orders.twig', $data);
 
         return new Response(new \Twig_Markup($html, 'UTF-8'));
     }
@@ -91,8 +91,10 @@ class Backend implements ControllerProviderInterface
     public function products(Application $app)
     {
         $sylius = new Sylius($this->config);
-        $data = [];
-        $html = $app['twig']->render('@SyliusBackend/products.twig', (array) $data);
+        $data = [
+            'sylius' => $sylius->getProductsData()
+        ];
+        $html = $app['twig']->render('@SyliusBackend/products.twig', $data);
 
         return new Response(new \Twig_Markup($html, 'UTF-8'));
     }

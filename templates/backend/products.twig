@@ -12,4 +12,52 @@
 
     {% block page_main %}
         {% include '@SyliusBackend/_nav.twig' %}
+        <table class="table">
+            <thead>
+                <tr class="active">
+                    <th>
+                        <h4>
+                            <strong>Name</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Created</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Updated</strong>
+                        </h4>
+                    </th>
+                    <th>
+                        <h4>
+                            <strong>Actions</strong>
+                        </h4>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in sylius.products %}
+                <tr>
+                    <th scope="row">
+                        <h5>
+                            {{product.name}}
+                        </h5>
+                    </th>
+                    <th>
+                        {{product.created_at}}
+                    </th>
+                    <th>
+                        {{product.updated_at}}
+                    </th>
+                    <td>
+                        <button type="button" class="btn btn-default">Edit</button>
+                        <button type="button" class="btn btn-default">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
     {% endblock page_main %}

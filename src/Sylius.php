@@ -29,11 +29,24 @@ class Sylius
         return $orders->fetchLast5Orders();
     }
 
+    protected function getProducts()
+    {
+        $orders = new Fetch\Products($this->getClient());
+        return $orders->fetchProducts();
+    }
+
     public function getDashboardData()
     {
         return [
             'orders' => $this->getLatestOrders(),
             'customers' => $this->getLatestCustomers()
+        ];
+    }
+
+    public function getProductsData()
+    {
+        return [
+            'products' => $this->getProducts()
         ];
     }
 }
