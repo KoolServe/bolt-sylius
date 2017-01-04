@@ -41,6 +41,12 @@ class Sylius
         return $orders->fetchOrders();
     }
 
+    protected function getCustomers()
+    {
+        $customers = new Fetch\Customers($this->getClient());
+        return $customers->fetchCustomers();
+    }
+
     public function getDashboardData()
     {
         return [
@@ -60,6 +66,13 @@ class Sylius
     {
         return [
             'orders' => $this->getOrders()
+        ];
+    }
+
+    public function getCustomersData()
+    {
+        return [
+            'customers' => $this->getCustomers()
         ];
     }
 }

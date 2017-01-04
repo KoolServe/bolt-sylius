@@ -12,4 +12,67 @@
 
     {% block page_main %}
         {% include '@SyliusBackend/_nav.twig' %}
+        <table class="table">
+            <thead>
+                <tr class="active">
+                    <th>
+                        <h4>
+                            <strong>First name</strong>
+                        </h4>
+                    </th>
+                    <td>
+                        <h4>
+                            <strong>Last name</strong>
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            <strong>Email</strong>
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            <strong>Status</strong>
+                        </h4>
+                    </td>
+                    <td>
+                        <h4>
+                            <strong>Actions</strong>
+                        </h4>
+                    </td>
+                </tr>
+            </thead>
+                {% for customer in sylius.customers %}
+                <tr>
+                    <th scope="row">
+                        <h5>
+                            {{customer.first_name}}
+                        </h5>
+                    </th>
+                    <td>
+                        <h5>
+                            {{customer.last_name}}
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            {{customer.email}}
+                        </h5>
+                    </td>
+                    <td>
+                        <h5>
+                            {{customer.user.enabled}}
+                        </h5>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default">Show Orders</button>
+                        <button type="button" class="btn btn-default">Show</button>
+                        <button type="button" class="btn btn-default">Edit</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            <tbody>
+
+            </tbody>
+        </table>
     {% endblock page_main %}

@@ -67,7 +67,9 @@ class Backend implements ControllerProviderInterface
     public function customers(Application $app)
     {
         $sylius = new Sylius($this->config);
-        $data = [];
+        $data = [
+            'sylius' => $sylius->getCustomersData()
+        ];
         $html = $app['twig']->render('@SyliusBackend/customers.twig', $data);
 
         return new Response(new \Twig_Markup($html, 'UTF-8'));

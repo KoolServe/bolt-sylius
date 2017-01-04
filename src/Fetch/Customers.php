@@ -11,4 +11,10 @@ class Customers extends Base implements Fetch
         $client = $this->getClient();
         return $client->get($this->getName() . '/?limit=5');
     }
+
+    public function fetchCustomers()
+    {
+        $client = $this->getClient();
+        return $client->get($this->getName() . '/?limit=100');
+    }
 }
