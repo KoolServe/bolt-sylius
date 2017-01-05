@@ -4,17 +4,23 @@ namespace Bolt\Extension\Koolserve\Sylius\Fetch;
 
 class Orders extends Base implements Fetch
 {
-    protected $name = 'orders';
+    protected $name = 'orders/';
 
     public function fetchLast5Orders()
     {
         $client = $this->getClient();
-        return $client->get($this->getName() . '/?limit=5');
+        return $client->get($this->getName() . '?limit=5');
+    }
+
+    public function fetchOrder($id)
+    {
+        $client = $this->getClient();
+        return $client->get($this->getName() . $id);
     }
 
     public function fetchOrders()
     {
         $client = $this->getClient();
-        return $client->get($this->getName() . '/?limit=100');
+        return $client->get($this->getName() . '?limit=100');
     }
 }

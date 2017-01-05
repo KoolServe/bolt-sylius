@@ -1,5 +1,7 @@
 {% extends "_base/_page-nav.twig" %}
 
+{% import "@SyliusBackend/_macros.twig" as macros %}
+
 {% block page_nav 'Extensions' %}
 
     {% block page_title %}
@@ -86,11 +88,12 @@
                         </h5>
                     </th>
                     <td>
-                        <button type="button" class="btn btn-default">Show</button>
+                        <a href="{{ macros.getUrl('order') }}/view/{{order.id}}">
+                            <button type="button" class="btn btn-default">Show</button>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
-
             </tbody>
         </table>
     {% endblock page_main %}

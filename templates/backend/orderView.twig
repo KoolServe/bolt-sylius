@@ -1,0 +1,41 @@
+{% extends "_base/_page-nav.twig" %}
+
+{% block page_nav 'Extensions' %}
+
+    {% block page_title %}
+        {{ __('Sylius') }}
+    {% endblock page_title %}
+
+    {% block page_subtitle %}
+        {{ __('View Order') }}
+    {% endblock page_subtitle %}
+
+    {% block page_main %}
+        {% include '@SyliusBackend/_nav.twig' %}
+        {{dump(sylius.order.billing_address)}}
+        <div class="row">
+            <div class="col-md-9">
+                
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>Shipping Address</h1>
+                        <p>{{sylius.order.shipping_address.first_name}} {{sylius.order.shipping_address.first_name}}</p>
+                        <p>{{sylius.order.shipping_address.street}}</p>
+                        <p>{{sylius.order.shipping_address.city}}</p>
+                        <p>{{sylius.order.shipping_address.postcode}}</p>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <h1>Billing Address</h1>
+                        <p>{{sylius.order.billing_address.first_name}} {{sylius.order.billing_address.first_name}}</p>
+                        <p>{{sylius.order.billing_address.street}}</p>
+                        <p>{{sylius.order.billing_address.city}}</p>
+                        <p>{{sylius.order.billing_address.postcode}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endblock page_main %}

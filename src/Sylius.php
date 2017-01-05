@@ -35,6 +35,12 @@ class Sylius
         return $orders->fetchProducts();
     }
 
+    protected function getOrder($id)
+    {
+        $orders = new Fetch\Orders($this->getClient());
+        return $orders->fetchOrder($id);
+    }
+
     protected function getOrders()
     {
         $orders = new Fetch\Orders($this->getClient());
@@ -59,6 +65,13 @@ class Sylius
     {
         return [
             'products' => $this->getProducts()
+        ];
+    }
+
+    public function getOrderViewData($id)
+    {
+        return [
+            'order' => $this->getOrder($id)
         ];
     }
 
