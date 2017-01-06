@@ -1,5 +1,7 @@
 {% extends "_base/_page-nav.twig" %}
 
+{% set config = app['sylius.config'] %}
+
 {% block page_nav 'Extensions' %}
 
     {% block page_title %}
@@ -12,10 +14,81 @@
 
     {% block page_main %}
         {% include '@SyliusBackend/_nav.twig' %}
-        {{dump(sylius.order.billing_address)}}
         <div class="row">
             <div class="col-md-9">
-                
+                <h2>
+                    Order #{{sylius.order.number}}
+                    <small>{{sylius.order.checkout_completed_at}} | {{sylius.order.checkout_state}} | Purchased from {{sylius.order.channel.code}}</small>
+                    <a href="http://{{config.get('domain')}}/admin/orders/{{sylius.order.id}}" target="_blank">
+                        <button type="button" class="btn btn-default pull-right">View in Sylius</button>
+                    </a>
+                </h2>
+
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <thead>
+                                <tr class="active">
+                                    <th>
+                                        <h4>
+                                            <strong>Title</strong>
+                                        </h4>
+                                    </th>
+                                    <th>
+                                        <h4>
+                                            <strong>Total</strong>
+                                        </h4>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for orderItem in sylius.order.items %}
+                                    <tr>
+                                        <th>
+                                            <h5>
+                                                -
+                                            </h5>
+                                        </th>
+                                        <th>
+                                            <h5>
+                                                {{(orderItem.total / 100)|number_format(2, '.', ',') }}
+                                            </h5>
+                                        </th>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr class="active">
+                                    <th colspan="2">
+                                        <div class="pull-right">
+                                            <strong>Sub total</strong>: -
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span>-</span>
+                                    </th>
+                                    <th>
+                                        <div class="pull-right">
+                                            <strong>Shipping total</strong>: -
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">
+                                        <h3 class="pull-right">
+                                            <strong>Total:</strong>
+                                            {{(sylius.order.total / 100)|number_format(2, '.', ',') }}
+                                        </h3>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="row">
@@ -36,6 +109,5 @@
                     </div>
                 </div>
             </div>
-
         </div>
     {% endblock page_main %}
