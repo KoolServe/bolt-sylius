@@ -1,5 +1,7 @@
 {% extends "_base/_page-nav.twig" %}
 
+{% import "@SyliusBackend/_macros.twig" as macros %}
+
 {% block page_nav 'Extensions' %}
 
     {% block page_title %}
@@ -101,7 +103,9 @@
                                     {{order.total / 100}}
                                 </th>
                                 <td>
-                                    <button type="button" class="btn btn-default">Show</button>
+                                    <a href="{{ macros.getUrl('orders') }}/{{order.id}}">
+                                        <button type="button" class="btn btn-default">Show</button>
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}

@@ -40,8 +40,8 @@ class Backend implements ControllerProviderInterface
             ->bind('sylius_orders')
             ->method(Request::METHOD_GET);
 
-        $ctr->match($baseUrl . '/order/view/{id}', [$this, 'orderView'])
-            ->bind('sylius_order_view')
+        $ctr->match($baseUrl . '/orders/{id}', [$this, 'ordersView'])
+            ->bind('sylius_orders_view')
             ->method(Request::METHOD_GET);
 
         $ctr->match($baseUrl . '/products', [$this, 'products'])
@@ -96,13 +96,13 @@ class Backend implements ControllerProviderInterface
     /**
      * @param Application $app
      */
-    public function orderView($id, Application $app)
+    public function ordersView($id, Application $app)
     {
         $sylius = new Sylius($this->config);
         $data = [
             'sylius' => $sylius->getOrderViewData($id)
         ];
-        $html = $app['twig']->render('@SyliusBackend/orderView.twig', $data);
+        $html = $app['twig']->render('@SyliusBackend/ordersView.twig', $data);
 
         return new Response(new \Twig_Markup($html, 'UTF-8'));
     }
