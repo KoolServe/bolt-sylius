@@ -24,6 +24,7 @@
     },
     "extra": {
         "bolt-assets": "web",
-        "bolt-class": "Bolt\\Extension\\Koolserve\\Sylius\\SyliusExtension"
+        "bolt-class": "Bolt\\Extension\\Koolserve\\Sylius\\SyliusExtension",
+        "bolt-icon": "icon.png"
     }
 }
